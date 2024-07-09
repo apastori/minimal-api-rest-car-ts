@@ -1,4 +1,4 @@
-export interface Car {
+export interface ICar {
     color: string,
     gas: 'gasoline' | 'electric',
     year: number,

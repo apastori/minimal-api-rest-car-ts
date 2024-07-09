@@ -28,7 +28,7 @@ const updateCarService = async (id: string, data: ICar) => {
 }
 
 const deleteCarService = async (id: string) => {
-    const responseFindCar = await carModel.findOneAndDelete({_id: id});
+    const responseFindCar = await carModel.deleteOne({_id: id});
     return responseFindCar;
 }
 

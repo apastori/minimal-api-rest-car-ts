@@ -1,12 +1,11 @@
 import { z } from "zod";
-import { Environment } from "./environmentType";
 
 export const EnvSchema = z.object({
     PORT: z.string(),
     ENV: z.union([
-            z.literal('CHECK'),
-            z.literal('DIRECT DEPOSIT'),
-            z.literal('MONEY ORDER'),
+            z.literal('production'),
+            z.literal('testing'),
+            z.literal('development'),
         ]),
     DBNAME: z.string(),
     DBPORT: z.string().optional(),
