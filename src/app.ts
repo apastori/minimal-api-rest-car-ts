@@ -6,10 +6,8 @@ import type { Express } from "express";
 import cors from "cors";
 //Import Cors Options
 import { corsOptions } from "./corsOptions";
-//import StartServerMiddleware
-import { startServerCallback } from "./startServerCallback";
 //import Routes
-import { router } from "./routes";
+import { router } from "./Routes";
 //import Database Connection
 import { databaseConnection } from "./DB/databaseConnection";
 //import Start Express Server

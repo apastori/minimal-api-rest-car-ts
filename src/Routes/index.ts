@@ -20,3 +20,5 @@ readdirSync(PATH_ROUTER).filter((filename) => {
         })
     }
 });
+
+export { router }

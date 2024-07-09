@@ -6,7 +6,8 @@ const getCar = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const getCarsResponse = await findCarService(id!);
-        res.send(getCarsResponse);
+        const responseFinal = getCarsResponse ? getCarsResponse : "NOT_FOUND"
+        res.send(responseFinal);
     } catch(e) {
         handleHttp(res, "ERROR_GET_CAR");
     }
@@ -35,15 +36,21 @@ const updateCar = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
         const { data } = req.body;
-        const getCarsResponse = await updateCarService(id, data);
+        const getCarsResponse = await updateCarService(id!, data);
         res.send(getCarsResponse);
     } catch(e) {
         handleHttp(res, "ERROR_UPDATE_CAR");
     }
 }
 
-const deleteCar = (req: Request, res: Response) => {
-    
+const deleteCar = async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const deleteCarResponse = await deleteCarService(id!);
+        res.send(deleteCarResponse);
+    } catch(e) {
+        handleHttp(res, "ERROR_DELETE_CAR");
+    }
 }
 
-export { getCar, getCars, updateCar, deleteCar }
+export { getCar, getCars, postCar, updateCar, deleteCar }
