@@ -2,6 +2,7 @@ import { IAuth } from "../Domain/IAuth";
 import { IUser } from "../Domain/IUser";
 import { userModel } from "../Models/userModel";
 import { encrypt, verify } from "../Utils/password.handle";
+import { generateToken } from "../Utils/jwt.handle";
 
 const registerNewUser = async (user: IUser) => {
     const userExists = await userModel.findOne({email: user.email});
@@ -25,7 +26,12 @@ const  loginUser = async (userAuth: IAuth) => {
     const hashedPassword: string = userExists!.password;
     const isCorrect: boolean = await verify(userAuth.password, hashedPassword);
     if (!isCorrect) return "Password is Incorrect";
-    return userExists;
+    const token = generateToken(userExists!.email);
+    const data = {
+        token,
+        user: userExists
+    }
+    return data;
 }
 
 export { registerNewUser, loginUser }

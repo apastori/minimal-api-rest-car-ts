@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { findCarService, insertCarService, listCarsService, updateCarService, deleteCarService } from "../Services/carServices";
 import { handleHttp } from "../Utils/error.handle";
 
-const getCar = async (req: Request, res: Response) => {
+const getCar = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
         const getCarsResponse = await findCarService(id!);
@@ -13,7 +13,7 @@ const getCar = async (req: Request, res: Response) => {
     }
 }
 
-const getCars = async (req: Request, res: Response) => {
+const getCars = async (req: Request, res: Response): Promise<void> => {
     try {
         const getCarsResponse = await listCarsService();
         res.send(getCarsResponse);
@@ -22,7 +22,7 @@ const getCars = async (req: Request, res: Response) => {
     }
 }
 
-const postCar = async (req: Request, res: Response) => {
+const postCar = async (req: Request, res: Response): Promise<void> => {
     try {
         //check if req.body fits Car Schema
         const insertCarResponse = await insertCarService(req.body);
@@ -32,7 +32,7 @@ const postCar = async (req: Request, res: Response) => {
     }
 }
 
-const updateCar = async (req: Request, res: Response) => {
+const updateCar = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
         const { data } = req.body;
@@ -43,7 +43,7 @@ const updateCar = async (req: Request, res: Response) => {
     }
 }
 
-const deleteCar = async (req: Request, res: Response) => {
+const deleteCar = async (req: Request, res: Response): Promise<void> => {
     try {
         const { id } = req.params;
         const deleteCarResponse = await deleteCarService(id!);
